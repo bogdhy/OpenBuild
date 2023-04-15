@@ -9,30 +9,22 @@
       "options": {
         "root": "apps/openbuild-api"
       },
-      "dependsOn": [
-        "^install"
-      ],
-      "outputs": [
-        "{workspaceRoot}/apps/openbuild-api/target"
-      ]
+      "dependsOn": ["^install"],
+      "outputs": ["{workspaceRoot}/apps/openbuild-api/target"]
     },
     "install": {
       "executor": "@nxrocks/nx-spring-boot:install",
       "options": {
         "root": "apps/openbuild-api"
       },
-      "outputs": [
-        "{workspaceRoot}/apps/openbuild-api/target"
-      ]
+      "outputs": ["{workspaceRoot}/apps/openbuild-api/target"]
     },
     "test": {
       "executor": "@nxrocks/nx-spring-boot:test",
       "options": {
         "root": "apps/openbuild-api"
       },
-      "outputs": [
-        "{workspaceRoot}/apps/openbuild-api/target"
-      ]
+      "outputs": ["{workspaceRoot}/apps/openbuild-api/target"]
     },
     "clean": {
       "executor": "@nxrocks/nx-spring-boot:clean",
@@ -57,9 +49,7 @@
       "options": {
         "root": "apps/openbuild-api"
       },
-      "outputs": [
-        "{workspaceRoot}/apps/openbuild-api/target"
-      ]
+      "outputs": ["{workspaceRoot}/apps/openbuild-api/target"]
     },
     "build-info": {
       "executor": "@nxrocks/nx-spring-boot:build-info",
