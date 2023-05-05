@@ -1,4 +1,4 @@
-package com.example.openbuild;
+package com.agreent.openbuild;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,11 +17,12 @@ import org.testcontainers.utility.DockerImageName;
 class OpenbuildApiApplicationTests {
 
   @Container
-  static MySQLContainer mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:8.0-debian"));
+  static MySQLContainer mySQLContainer =
+      new MySQLContainer<>(DockerImageName.parse("mysql:8.0-debian"));
 
   @Container
-  static RabbitMQContainer rabbitMQContainer = new RabbitMQContainer(DockerImageName.parse("rabbitmq:3-management" +
-    "-alpine"));
+  static RabbitMQContainer rabbitMQContainer =
+      new RabbitMQContainer(DockerImageName.parse("rabbitmq:3-management" + "-alpine"));
 
   @BeforeAll
   public static void setUp() {
