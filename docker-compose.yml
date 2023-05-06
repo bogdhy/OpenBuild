@@ -1,0 +1,63 @@
+version: '3'
+services:
+  mysql:
+    image: docker.io/bitnami/mysql:8.0
+    ports:
+      - '3306:3306'
+    volumes:
+      - openbuild-db-data:/bitnami/mysql/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=vB767uvDpDUaf3ZuyNqxFRSU
+      - MYSQL_PASSWORD=QRj8B6aYjvcB3XRSZGsnxKaZ
+      - MYSQL_USER=openbuild_user
+      - MYSQL_DATABASE=openbuild
+    healthcheck:
+      test: [ 'CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh' ]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:3.11
+    container_name: openbuild-rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_USERNAME=openbuild
+      - RABBITMQ_PASSWORD=hbY4n6Zc5ZzeZ7Hx
+      - RABBITMQ_SECURE_PASSWORD=yes
+    volumes:
+      - openbuild-rabbitmq-data:/bitnami/rabbitmq/mnesia
+
+  elasticsearch:
+    image: docker.io/bitnami/elasticsearch:7
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    volumes:
+      - openbuild-es-data:/bitnami/elasticsearch/data
+
+#  keycloak:
+#    image: quay.io/keycloak/keycloak:21.0.1
+#    restart: unless-stopped
+#    volumes:
+#      - ./keycloak/imports:/opt/keycloak/data/import
+#    environment:
+#      KC_DB_URL: jdbc:mysql://mysql:3306/keycloak
+#      KC_DB_DATABASE: keycloak
+#      KC_DB_USER: keycloak
+#      KC_DB_PASSWORD: keycloak
+#      KC_HTTP_ENABLED: "true"
+#      KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
+#      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
+#    entrypoint: [ "/opt/keycloak/bin/kc.sh", "start-dev", "--db=mysql", "--import-realm" ]
+#    ports:
+#      - "${KEYCLOAK_SERVER_PORT}:8080"
+#    depends_on:
+#      - mysql
+
+volumes:
+  openbuild-db-data:
+  openbuild-es-data:
+  openbuild-rabbitmq-data:

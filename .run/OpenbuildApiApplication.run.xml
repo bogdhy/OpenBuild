@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="OpenbuildApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <envs>
+      <env name="OPENBUILD_DB_HOST" value="localhost" />
+      <env name="OPENBUILD_DB_NAME" value="openbuild" />
+      <env name="OPENBUILD_DB_PASSWORD" value="QRj8B6aYjvcB3XRSZGsnxKaZ" />
+      <env name="OPENBUILD_DB_USER" value="openbuild_user" />
+      <env name="SPRING_RABBITMQ_PASSWORD" value="hbY4n6Zc5ZzeZ7Hx" />
+      <env name="SPRING_RABBITMQ_USERNAME" value="openbuild" />
+    </envs>
+    <module name="openbuild-api" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.agreent.openbuild.OpenbuildApiApplication" />
+    <option name="VM_PARAMETERS" value="            &quot;--add-opens&quot; &quot;java.base/java.lang=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.io=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.util=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.util.concurrent=ALL-UNNAMED&quot;" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
