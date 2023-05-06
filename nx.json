@@ -74,5 +74,8 @@
     "@nrwl/angular:component": {
       "style": "scss"
     }
-  }
+  },
+  "plugins": [
+    "@nxrocks/nx-spring-boot"
+  ]
 }

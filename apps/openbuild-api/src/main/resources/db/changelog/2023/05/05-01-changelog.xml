@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+  objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+  <changeSet id="1683292917881-1" author="Bogdan Niculescu">
+    <createTable tableName="association_value_entry">
+      <column name="id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_associationvalueentry" />
+      </column>
+      <column name="saga_id" type="VARCHAR(255)" />
+      <column name="association_key" type="VARCHAR(255)" />
+      <column name="association_value" type="VARCHAR(255)" />
+      <column name="saga_type" type="VARCHAR(255)" />
+    </createTable>
+  </changeSet>
+  <changeSet id="1683292917881-2" author="Bogdan Niculescu">
+    <createTable tableName="dead_letter_entry">
+      <column name="dead_letter_id" type="VARCHAR(255)">
+        <constraints primaryKey="true" primaryKeyName="pk_deadletterentry" />
+      </column>
+      <column name="processing_group" type="VARCHAR(255)" />
+      <column name="sequence_identifier" type="VARCHAR(255)" />
+      <column name="sequence_index" type="BIGINT">
+        <constraints nullable="false" />
+      </column>
+      <column name="enqueued_at" type="DATETIME" />
+      <column name="last_touched" type="DATETIME" />
+      <column name="processing_started" type="DATETIME" />
+      <column name="cause_type" type="VARCHAR(255)" />
+      <column name="cause_message" type="VARCHAR(255)" />
+      <column name="diagnostics" type="LONGBLOB" />
+      <column name="message_type" type="VARCHAR(255)" />
+      <column name="event_identifier" type="VARCHAR(255)" />
+      <column name="time_stamp" type="VARCHAR(255)" />
+      <column name="payload_type" type="VARCHAR(255)" />
+      <column name="payload_revision" type="VARCHAR(255)" />
+      <column name="payload" type="LONGBLOB" />
+      <column name="meta_data" type="LONGBLOB" />
+      <column name="type" type="VARCHAR(255)" />
+      <column name="aggregate_identifier" type="VARCHAR(255)" />
+      <column name="sequence_number" type="BIGINT" />
+      <column name="token_type" type="VARCHAR(255)" />
+      <column name="token" type="LONGBLOB" />
+    </createTable>
+  </changeSet>
+  <changeSet id="1683292917881-3" author="Bogdan Niculescu">
+    <createTable tableName="domain_event_entry">
+      <column name="global_index" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_domainevententry" />
+      </column>
+      <column name="type" type="VARCHAR(255)" />
+      <column name="aggregate_identifier" type="VARCHAR(255)" />
+      <column name="sequence_number" type="BIGINT">
+        <constraints nullable="false" />
+      </column>
+      <column name="event_identifier" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="time_stamp" type="VARCHAR(255)" />
+      <column name="payload_type" type="VARCHAR(255)" />
+      <column name="payload_revision" type="VARCHAR(255)" />
+      <column name="payload" type="LONGBLOB" />
+      <column name="meta_data" type="LONGBLOB" />
+    </createTable>
+  </changeSet>
+  <changeSet id="1683292917881-4" author="Bogdan Niculescu">
+    <createTable tableName="saga_entry">
+      <column name="saga_id" type="VARCHAR(255)">
+        <constraints primaryKey="true" primaryKeyName="pk_sagaentry" />
+      </column>
+      <column name="saga_type" type="VARCHAR(255)" />
+      <column name="revision" type="VARCHAR(255)" />
+      <column name="serialized_saga" type="LONGBLOB" />
+    </createTable>
+  </changeSet>
+  <changeSet id="1683292917881-5" author="Bogdan Niculescu">
+    <createTable tableName="snapshot_event_entry">
+      <column name="aggregate_identifier" type="VARCHAR(255)">
+        <constraints primaryKey="true" primaryKeyName="pk_snapshotevententry" />
+      </column>
+      <column name="sequence_number" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_snapshotevententry" />
+      </column>
+      <column name="type" type="VARCHAR(255)">
+        <constraints primaryKey="true" primaryKeyName="pk_snapshotevententry" />
+      </column>
+      <column name="event_identifier" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="time_stamp" type="VARCHAR(255)" />
+      <column name="payload_type" type="VARCHAR(255)" />
+      <column name="payload_revision" type="VARCHAR(255)" />
+      <column name="payload" type="LONGBLOB" />
+      <column name="meta_data" type="LONGBLOB" />
+    </createTable>
+  </changeSet>
+  <changeSet id="1683292917881-6" author="Bogdan Niculescu">
+    <createTable tableName="token_entry">
+      <column name="processor_name" type="VARCHAR(255)">
+        <constraints primaryKey="true" primaryKeyName="pk_tokenentry" />
+      </column>
+      <column name="token" type="LONGBLOB" />
+      <column name="token_type" type="VARCHAR(255)" />
+      <column name="timestamp" type="VARCHAR(255)" />
+      <column name="owner" type="VARCHAR(255)" />
+      <column name="segment" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tokenentry" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1683292917881-7" author="Bogdan Niculescu">
+    <addUniqueConstraint columnNames="event_identifier"
+      constraintName="uc_domainevententry_eventidentifier" tableName="domain_event_entry" />
+  </changeSet>
+  <changeSet id="1683292917881-8" author="Bogdan Niculescu">
+    <addUniqueConstraint columnNames="event_identifier"
+      constraintName="uc_snapshotevententry_eventidentifier" tableName="snapshot_event_entry" />
+  </changeSet>
+
+  <changeSet id="1681677707636-19" author="Bogdan Niculescu">
+    <createTable tableName="hibernate_sequence">
+      <column name="next_val" type="BIGINT" />
+    </createTable>
+
+    <insert tableName="hibernate_sequence">
+      <column name="next_val" value="1" />
+    </insert>
+  </changeSet>
+</databaseChangeLog>
