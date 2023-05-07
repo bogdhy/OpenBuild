@@ -1,0 +1,51 @@
+package com.agreent.openbuild.core.config.i18n.exceptions;
+
+import com.agreent.openbuild.core.config.i18n.TranslationService;
+import org.springframework.context.NoSuchMessageException;
+
+import java.io.Serial;
+import java.io.Serializable;
+
+import static org.springframework.context.i18n.LocaleContextHolder.getLocale;
+
+public class TranslatableException extends RuntimeException implements Serializable {
+
+  @Serial
+  private static final long serialVersionUID = -7056456777581329666L;
+
+  private final String i18nMessageKey;
+  private final Object[] args;
+
+  public TranslatableException(String i18nMessageKey) {
+    super(i18nMessageKey);
+    this.i18nMessageKey = i18nMessageKey;
+    this.args = new Object[0];
+  }
+
+  public TranslatableException(String i18nMessageKey, Object... args) {
+    super(i18nMessageKey);
+    this.i18nMessageKey = i18nMessageKey;
+    this.args = args.clone();
+  }
+
+  public TranslatableException(String i18nMessageKey, Throwable cause) {
+    super(i18nMessageKey, cause);
+    this.i18nMessageKey = i18nMessageKey;
+    this.args = new Object[0];
+  }
+
+  public TranslatableException(String i18nMessageKey, Throwable cause, Object... args) {
+    super(i18nMessageKey, cause);
+    this.i18nMessageKey = i18nMessageKey;
+    this.args = args.clone();
+  }
+
+  @Override
+  public String getLocalizedMessage() {
+    try {
+      return TranslationService.getInstance().translate(getLocale(), i18nMessageKey, args);
+    } catch (NoSuchMessageException ignored) {
+      return getMessage();
+    }
+  }
+}
