@@ -74,7 +74,7 @@ public class WebSecurityConfig {
     // @formatter:off
     http
       .securityMatcher(new NegatedServerWebExchangeMatcher(new OrServerWebExchangeMatcher(
-        pathMatchers("/app/**", "/_app/**", "/i18n/**", "/img/**", "/content/**", "/swagger-ui/**", "/v3/api-docs/**", "/test/**"),
+        pathMatchers("/swagger-ui/**", "/v3/api-docs/**"),
         pathMatchers(HttpMethod.OPTIONS, "/**")
       )))
       .csrf()
@@ -86,18 +86,9 @@ public class WebSecurityConfig {
       .exceptionHandling()
       .and()
       .authorizeExchange()
-      .pathMatchers("/").permitAll()
-      .pathMatchers("/*.*").permitAll()
-      .pathMatchers("/api/authenticate").permitAll()
-      .pathMatchers("/api/auth-info").permitAll()
-      .pathMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
       .pathMatchers("/api/**").authenticated()
-      .pathMatchers("/services/**").authenticated()
-      .pathMatchers("/management/health").permitAll()
-      .pathMatchers("/management/health/**").permitAll()
-      .pathMatchers("/management/info").permitAll()
-      .pathMatchers("/management/prometheus").permitAll()
-      .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
+      .pathMatchers("/actuator/health/**", "/actuator/metrics/**", "/actuator/prometheus").hasAnyRole("ADMIN", "MONITORING")
+      .pathMatchers("/actuator/**", "/admin/**").hasRole("ADMIN");
 
     http.oauth2Login(oauth2 -> oauth2.authorizationRequestResolver(authorizationRequestResolver(this.clientRegistrationRepository)))
 
