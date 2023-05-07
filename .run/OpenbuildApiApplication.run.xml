@@ -1,6 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="OpenbuildApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <envs>
+      <env name="KEYCLOAK_BASE_URL" value="http://localhost:8180" />
+      <env name="KEYCLOAK_CLIENT_ID" value="default-client" />
+      <env name="KEYCLOAK_CLIENT_SECRET" value="1qGeoWlhZS4EWpULfmBA3eDPqqd8ZeJ7" />
+      <env name="KEYCLOAK_REALM" value="default" />
+      <env name="KEYCLOAK_SCOPE" value="openid,profile,email" />
       <env name="OPENBUILD_DB_HOST" value="localhost" />
       <env name="OPENBUILD_DB_NAME" value="openbuild" />
       <env name="OPENBUILD_DB_PASSWORD" value="QRj8B6aYjvcB3XRSZGsnxKaZ" />

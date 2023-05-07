@@ -5,11 +5,12 @@ services:
     ports:
       - '5432:5432'
     volumes:
+      - ./.docker/db:/docker-entrypoint-initdb.d
       - openbuild-db-data:/bitnami/postgresql
     environment:
+      - POSTGRESQL_DATABASE=openbuild
       - POSTGRESQL_PASSWORD=QRj8B6aYjvcB3XRSZGsnxKaZ
       - POSTGRESQL_USERNAME=openbuild_user
-      - POSTGRESQL_DATABASE=openbuild
 
   rabbitmq:
     image: docker.io/bitnami/rabbitmq:3.11
@@ -32,24 +33,19 @@ services:
     volumes:
       - openbuild-es-data:/bitnami/elasticsearch/data
 
-#  keycloak:
-#    image: quay.io/keycloak/keycloak:21.0.1
-#    restart: unless-stopped
-#    volumes:
-#      - ./keycloak/imports:/opt/keycloak/data/import
-#    environment:
-#      KC_DB_URL: jdbc:postgresql://postgresql:3306/keycloak
-#      KC_DB_DATABASE: keycloak
-#      KC_DB_USER: keycloak
-#      KC_DB_PASSWORD: keycloak
-#      KC_HTTP_ENABLED: "true"
-#      KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
-#      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
-#    entrypoint: [ "/opt/keycloak/bin/kc.sh", "start-dev", "--db=postgresql", "--import-realm" ]
-#    ports:
-#      - "${KEYCLOAK_SERVER_PORT}:8080"
-#    depends_on:
-#      - postgresql
+  keycloak:
+    image: docker.io/bitnami/keycloak:21
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_DATABASE_NAME: ob_keycloak
+      KEYCLOAK_DATABASE_USER: "openbuild_user"
+      KEYCLOAK_DATABASE_PASSWORD: "QRj8B6aYjvcB3XRSZGsnxKaZ"
+      KEYCLOAK_ADMIN: ob_admin
+      KEYCLOAK_ADMIN_PASSWORD: "DPEatJFc9tAR9mXWLMUy"
+    ports:
+      - "8180:8080"
+    depends_on:
+      - postgresql
 
 volumes:
   openbuild-db-data:

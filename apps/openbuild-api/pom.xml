@@ -28,10 +28,17 @@
 
 		<axon.version>4.7.3</axon.version>
 		<spotless.version>2.23.0</spotless.version>
-    <mysql-connector.version>8.0.32</mysql-connector.version>
+    <caffeine.version>3.1.1</caffeine.version>
+		<crypto-shredding.version>1.2.0</crypto-shredding.version>
 		<testcontainers.version>1.17.6</testcontainers.version>
 	</properties>
 	<dependencies>
+	  <dependency>
+      <groupId>com.agreent.openbuild</groupId>
+      <artifactId>core</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -48,17 +55,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+		<!-- Spring Security OAuth 2.0 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+    </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -84,6 +92,17 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
+		<dependency>
+        <groupId>com.github.ben-manes.caffeine</groupId>
+        <artifactId>caffeine</artifactId>
+        <version>${caffeine.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/engineering.everest.axon/crypto-shredding-extension -->
+    <dependency>
+        <groupId>engineering.everest.axon</groupId>
+        <artifactId>crypto-shredding-extension</artifactId>
+        <version>${crypto-shredding.version}</version>
+    </dependency>
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
