@@ -15,6 +15,8 @@
     "@angular/router": "~15.2.0",
     "@nrwl/angular": "15.9.2",
     "@nxrocks/nx-spring-boot": "^7.0.0",
+    "keycloak-angular": "^13.1.0",
+    "keycloak-js": "^21.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
