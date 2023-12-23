@@ -6,8 +6,8 @@ export const initializeKeycloak = (keycloak: KeycloakService) => () => {
     loadUserProfileAtStartUp: true,
     config: {
       url: 'http://localhost:8180/',
-      realm: 'default',
-      clientId: 'webapp',
+      realm: 'openbuild',
+      clientId: 'ob-webapp',
     },
     initOptions: {
       onLoad: "login-required",

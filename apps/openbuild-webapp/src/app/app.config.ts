@@ -3,6 +3,7 @@ import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {provideHttpClient} from '@angular/common/http';
 import {provideRouter, withEnabledBlockingInitialNavigation,} from '@angular/router';
 import {appRoutes} from './app.routes';
+import {initializeKeycloak} from "@openbuild/auth";
 
 export const appConfig: ApplicationConfig = {
   providers: [

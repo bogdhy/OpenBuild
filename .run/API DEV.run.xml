@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="OpenbuildApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <configuration default="false" name="API DEV" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <envs>
       <env name="KEYCLOAK_BASE_URL" value="http://localhost:8180" />
-      <env name="KEYCLOAK_CLIENT_ID" value="default-client" />
-      <env name="KEYCLOAK_CLIENT_SECRET" value="1qGeoWlhZS4EWpULfmBA3eDPqqd8ZeJ7" />
-      <env name="KEYCLOAK_REALM" value="default" />
+      <env name="KEYCLOAK_CLIENT_ID" value="ob-webapp"/>
+      <env name="KEYCLOAK_CLIENT_SECRET" value="SLozDtqyevBXR5wJolHBvXRyIM08MAQ0"/>
+      <env name="KEYCLOAK_REALM" value="openbuild"/>
       <env name="KEYCLOAK_SCOPE" value="openid,profile,email" />
       <env name="OPENBUILD_DB_HOST" value="localhost" />
       <env name="OPENBUILD_DB_NAME" value="openbuild" />
@@ -15,7 +15,8 @@
     </envs>
     <module name="openbuild-api" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.agreent.openbuild.OpenbuildApiApplication" />
-    <option name="VM_PARAMETERS" value="            &quot;--add-opens&quot; &quot;java.base/java.lang=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.io=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.util=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.util.concurrent=ALL-UNNAMED&quot;" />
+    <option name="VM_PARAMETERS"
+            value="&quot;--add-opens&quot; &quot;java.base/java.lang=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.io=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.util=ALL-UNNAMED&quot;, &quot;--add-opens&quot; &quot;java.base/java.util.concurrent=ALL-UNNAMED&quot;"/>
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
