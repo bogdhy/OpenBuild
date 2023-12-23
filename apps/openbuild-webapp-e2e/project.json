@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/openbuild-webapp-e2e/cypress.config.ts",
         "devServerTarget": "openbuild-webapp:serve:development",
@@ -21,10 +21,14 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/openbuild-webapp-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": [
+          "apps/openbuild-webapp-e2e/**/*.{js,ts}"
+        ]
       }
     }
   },

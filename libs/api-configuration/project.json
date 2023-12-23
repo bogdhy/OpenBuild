@@ -1,0 +1,63 @@
+{
+  "name": "api-configuration",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-configuration/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nxrocks/nx-spring-boot:build",
+      "options": {
+        "root": "libs/api-configuration"
+      },
+      "dependsOn": [
+        "^install"
+      ],
+      "outputs": [
+        "{workspaceRoot}/libs/api-configuration/target"
+      ]
+    },
+    "install": {
+      "executor": "@nxrocks/nx-spring-boot:install",
+      "options": {
+        "root": "libs/api-configuration"
+      },
+      "outputs": [
+        "{workspaceRoot}/libs/api-configuration/target"
+      ]
+    },
+    "test": {
+      "executor": "@nxrocks/nx-spring-boot:test",
+      "options": {
+        "root": "libs/api-configuration"
+      },
+      "outputs": [
+        "{workspaceRoot}/libs/api-configuration/target"
+      ]
+    },
+    "clean": {
+      "executor": "@nxrocks/nx-spring-boot:clean",
+      "options": {
+        "root": "libs/api-configuration"
+      }
+    },
+    "format": {
+      "executor": "@nxrocks/nx-spring-boot:format",
+      "options": {
+        "root": "libs/api-configuration"
+      }
+    },
+    "apply-format": {
+      "executor": "@nxrocks/nx-spring-boot:apply-format",
+      "options": {
+        "root": "libs/api-configuration"
+      }
+    },
+    "check-format": {
+      "executor": "@nxrocks/nx-spring-boot:check-format",
+      "options": {
+        "root": "libs/api-configuration"
+      }
+    }
+  },
+  "tags": []
+}

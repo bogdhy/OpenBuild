@@ -1,0 +1,67 @@
+version: '3'
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:14
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./.docker/db:/docker-entrypoint-initdb.d
+      - openbuild-db-data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_DATABASE=openbuild
+      - POSTGRESQL_PASSWORD=QRj8B6aYjvcB3XRSZGsnxKaZ
+      - POSTGRESQL_USERNAME=openbuild_user
+
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:3.11
+    container_name: openbuild-rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_USERNAME=openbuild
+      - RABBITMQ_PASSWORD=hbY4n6Zc5ZzeZ7Hx
+      - RABBITMQ_SECURE_PASSWORD=yes
+      - RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS=true
+    volumes:
+      - openbuild-rabbitmq-data:/bitnami/rabbitmq/mnesia
+
+  elasticsearch:
+    image: docker.io/bitnami/elasticsearch:7
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    volumes:
+      - openbuild-es-data:/bitnami/elasticsearch/data
+
+  mailhog:
+    image: registry.nexus.tools.dip-software.com/external/mailhog
+    restart: always
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  keycloak:
+    image: docker.io/bitnami/keycloak:21
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_DATABASE_NAME: ob_keycloak
+      KEYCLOAK_DATABASE_USER: "openbuild_user"
+      KEYCLOAK_DATABASE_PASSWORD: "QRj8B6aYjvcB3XRSZGsnxKaZ"
+      KEYCLOAK_ADMIN: ob_admin
+      KEYCLOAK_ADMIN_PASSWORD: "DPEatJFc9tAR9mXWLMUy"
+    ports:
+      - "8180:8080"
+    depends_on:
+      - postgresql
+      - mailhog
+
+volumes:
+  openbuild-db-data:
+  openbuild-es-data:
+  openbuild-rabbitmq-data:
